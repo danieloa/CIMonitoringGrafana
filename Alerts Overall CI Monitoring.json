@@ -495,7 +495,7 @@
         "frequency": "1m",
         "handler": 1,
         "message": "kubernetes_cloud_pods_created:\nNo pods were created in last 5 min",
-        "name": "Panel Title alert",
+        "name": "alert kubernetes_cloud_pods_created",
         "noDataState": "no_data",
         "notifications": []
       },
@@ -771,7 +771,7 @@
         "frequency": "1m",
         "handler": 1,
         "message": "Alert kube_node_spec_unschedulable\nthere is at least 1 node unschedulable",
-        "name": "Panel Title alert",
+        "name": "alert kube_node_spec_unschedulable",
         "noDataState": "no_data",
         "notifications": []
       },
@@ -1725,5 +1725,5 @@
   "timezone": "",
   "title": "Alerts Overall CI Monitoring",
   "uid": "2Vq3V7QMk",
-  "version": 18
+  "version": 20
 }
