@@ -142,7 +142,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -153,7 +153,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_job_count_history_count[1h])",
+          "expr": "jenkins_job_count_value",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -161,7 +161,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_job_count_last_hour",
+      "title": "jenkins_job_count",
       "type": "gauge"
     },
     {
@@ -307,7 +307,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -318,7 +318,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_job_scheduled_total[1h])",
+          "expr": "jenkins_job_scheduled_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -326,7 +326,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_job_scheduled_last_hour",
+      "title": "jenkins_job_scheduled",
       "type": "gauge"
     },
     {
@@ -335,6 +335,8 @@
         "defaults": {
           "custom": {},
           "mappings": [],
+          "max": 1,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -344,7 +346,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 1
               }
             ]
           }
@@ -472,7 +474,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "mean"
           ],
           "fields": "",
           "values": false
@@ -527,7 +529,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -538,7 +540,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_runs_success_total[1h])",
+          "expr": "jenkins_runs_success_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -546,7 +548,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_runs_success_last_hour",
+      "title": "jenkins_runs_success_total",
       "type": "gauge"
     },
     {
@@ -582,7 +584,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -593,7 +595,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_runs_total_total[1h])",
+          "expr": "jenkins_runs_total_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -758,7 +760,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_queue_size_value[15m])",
+          "expr": "jenkins_queue_size_value",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -766,7 +768,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Jenkins Queue Size (last 15min)",
+      "title": "Jenkins Queue Size",
       "type": "gauge"
     },
     {
@@ -890,7 +892,7 @@
           "format": "time_series",
           "instant": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -1011,7 +1013,7 @@
           "format": "time_series",
           "instant": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -1286,13 +1288,13 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
+        "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_node_online_value[5m])",
+          "expr": "jenkins_node_online_value",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -1690,6 +1692,7 @@
       "type": "gauge"
     }
   ],
+  "refresh": "5s",
   "schemaVersion": 25,
   "style": "dark",
   "tags": [],
@@ -1704,5 +1707,5 @@
   "timezone": "",
   "title": "Overall CI Monitoring",
   "uid": "0aOsbmwGk",
-  "version": 55
+  "version": 20
 }
