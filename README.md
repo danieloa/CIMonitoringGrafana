@@ -3,7 +3,7 @@
 This repo contains grafana dashboards to monitor Cloudbees CI Controllers.
 It assumes you have setup the additional scrapped Configurations in Prometheus.
 it also assumes you have the Prometheus Monitoring Plugin installed in all your controllers and the endpoint
-http(s)://<CJOC_URL>/<controller>/prometheus returns metrics.
+`http(s)://<CJOC_URL>/<controller>/prometheus` returns metrics.
 
 Example of Scrapped Configuration for CI Controllers
 - m1-typep && m1-typep2 are the Controllers' name
