@@ -44,9 +44,6 @@ Advanced Dashboards:
 - Executors.png -> CI Controller's executor monitoring dashboard
 ![Executors](./screenshots/Executors.png "Executors")
 
-- FolderContent.png -> CI Controller's Folder Content Monitoring Dashboard (only for traditional setup)
-![FolderContent](./screenshots/FolderContent.png "FolderContent")
-
 - GeneralInfo.png -> CI Controller's Status and Uptime Monitoring Dashboard
 ![GeneralInfo](./screenshots/GeneralInfo.png "GeneralInfo")
 
