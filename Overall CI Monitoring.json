@@ -87,7 +87,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -2262,5 +2262,5 @@
   "timezone": "",
   "title": "Overall CI Monitoring",
   "uid": "0aOsbmwGk",
-  "version": 11
+  "version": 13
 }
