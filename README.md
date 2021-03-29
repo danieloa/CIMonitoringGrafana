@@ -6,17 +6,17 @@ it also assumes you have the Prometheus Monitoring Plugin installed in all your 
 `http(s)://<CJOC_URL>/<controller>/prometheus` returns metrics.
 
 Example of Scrapped Configuration for CI Controllers
-- m1-typep && m1-typep2 are the Controllers' name
+- c1 && c2 are the Controllers' name
 ```yaml
     additionalScrapeConfigs:
-      - job_name: 'm1-typep-metrics'
-        metrics_path: '/m1-typep/prometheus'
+      - job_name: 'c1-metrics'
+        metrics_path: '/c1/prometheus'
         static_configs:
-        - targets: ['m1-typep.default.svc.cluster.local:80']
-      - job_name: 'm1-typep2-metrics'
-        metrics_path: '/m1-typep2/prometheus'
+        - targets: ['c1.default.svc.cluster.local:80']
+      - job_name: 'c2-metrics'
+        metrics_path: '/c2/prometheus'
         static_configs:
-        - targets: ['m1-typep2.default.svc.cluster.local:80']
+        - targets: ['c2.default.svc.cluster.local:80']
 ```
 
 You can simply import any of these dashboards in your prometheus/grafana setup
