@@ -29,10 +29,13 @@ There is only 1 change you need to make and that is related to process_virtual_m
 
 Main Monitoring and Alerting Dashboards:
 - Overall CI Monitoring.json -> All in one dashboard
-![Overall CI Monitoring](./screenshots/OverallDashboard.png "CJOCListeners")
+![Overall CI Monitoring](./screenshots/OverallDashboard.png "Overall CI Monitoring")
+
+- CBCI SLOs.json -> Metrics: SLOs and SLIs
+![CBCI SLOs](./screenshots/CBCISLOs.png "CBCISLOs")
 
 - Alerts Overall CI Dashboard -> Alerts for Overall CI Monitoring Dashboard
-![AlertsOverallCIMonitoring](./screenshots/AlertsOverallCIMonitoring.png "AlertsOverallDashboard") 
+![AlertsOverallCIMonitoring](./screenshots/AlertsOverallCIMonitoring.png "Alerts Overall CI Monitoring") 
 
 ## Advanced Dashboards
 Under advance/ folder, you can find an advanced set of dashboards for you to use if you think so.
