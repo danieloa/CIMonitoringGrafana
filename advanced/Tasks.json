@@ -283,7 +283,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(jenkins_task_waiting_duration_count) / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count)",
+          "expr": "(jenkins_task_waiting_duration_count) / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count + jenkins_task_waiting_duration_count)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -471,7 +471,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(jenkins_task_queuing_duration_count) / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count)",
+          "expr": "(jenkins_task_queuing_duration_count) / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count + jenkins_task_waiting_duration_count)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -659,7 +659,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(jenkins_task_buildable_duration_count)  / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count)",
+          "expr": "(jenkins_task_buildable_duration_count)  / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count + jenkins_task_waiting_duration_count)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -847,7 +847,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(jenkins_task_blocked_duration_count) / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count)",
+          "expr": "(jenkins_task_blocked_duration_count) / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count + jenkins_task_waiting_duration_count)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -1035,7 +1035,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(jenkins_task_execution_duration_count)  / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count)",
+          "expr": "(jenkins_task_execution_duration_count)  / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count + jenkins_task_waiting_duration_count)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -1097,5 +1097,5 @@
   "timezone": "",
   "title": "Tasks",
   "uid": "Y_dV128Gk",
-  "version": 19
+  "version": 25
 }
