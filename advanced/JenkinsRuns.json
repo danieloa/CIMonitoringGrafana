@@ -72,63 +72,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 24,
         "x": 0,
-        "y": 0
-      },
-      "id": 12,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.5",
-      "targets": [
-        {
-          "expr": "rate(jenkins_runs_unstable_total[1h])",
-          "interval": "",
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "jenkins_runs_unstable_last_hour",
-      "type": "gauge"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
         "y": 0
       },
       "id": 10,
@@ -136,7 +81,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -147,7 +92,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_runs_total_total[1h])",
+          "expr": "jenkins_runs_total_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -155,7 +100,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_runs_total_last_hour",
+      "title": "jenkins_runs_total",
       "type": "gauge"
     },
     {
@@ -186,12 +131,12 @@
         "x": 0,
         "y": 8
       },
-      "id": 6,
+      "id": 8,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -202,7 +147,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_runs_not_built_total[1h])",
+          "expr": "jenkins_runs_success_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -210,7 +155,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_runs_not_built_last_hour",
+      "title": "jenkins_runs_success",
       "type": "gauge"
     },
     {
@@ -241,12 +186,12 @@
         "x": 12,
         "y": 8
       },
-      "id": 8,
+      "id": 13,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -257,7 +202,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_runs_success_total[1h])",
+          "expr": "(jenkins_runs_success_total)/(jenkins_runs_total_total)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -265,7 +210,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_runs_success_last_hour",
+      "title": "jenkins_runs_success / jenkins_runs_total_total",
       "type": "gauge"
     },
     {
@@ -296,12 +241,12 @@
         "x": 0,
         "y": 16
       },
-      "id": 4,
+      "id": 12,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -312,7 +257,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_runs_failure_total[1h])",
+          "expr": "jenkins_runs_unstable_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -320,7 +265,227 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_runs_failure_last_hour",
+      "title": "jenkins_runs_unstable",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 14,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "(jenkins_runs_unstable_total)/(jenkins_runs_total_total)",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "jenkins_runs_unstable / jenkins_runs_total_total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "jenkins_runs_not_built_total",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "jenkins_runs_not_built",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 15,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "(jenkins_runs_not_built_total) / (jenkins_runs_total_total)",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "jenkins_runs_not_built / jenkins_runs_total_total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 2,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "jenkins_runs_aborted_total",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "jenkins_runs_aborted",
       "type": "gauge"
     },
     {
@@ -349,14 +514,14 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 32
       },
-      "id": 2,
+      "id": 16,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -367,7 +532,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_runs_aborted_total[1h])",
+          "expr": "jenkins_runs_aborted_total / jenkins_runs_total_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -375,7 +540,117 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_runs_aborted_last_hour",
+      "title": "jenkins_runs_aborted / jenkins_runs_total_total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 41
+      },
+      "id": 4,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "jenkins_runs_failure_total",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "jenkins_runs_failure",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 41
+      },
+      "id": 17,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "jenkins_runs_failure_total / jenkins_runs_total_total",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "jenkins_runs_failure / jenkins_runs_total_total",
       "type": "gauge"
     }
   ],

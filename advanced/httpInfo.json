@@ -76,12 +76,12 @@
         "x": 0,
         "y": 0
       },
-      "id": 14,
+      "id": 4,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -92,7 +92,338 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(http_responseCodes_serviceUnavailable_total[5m])",
+          "expr": "http_requests_count",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "httpRequest-Count Total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "httpActiveRequest",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 17,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "(http_activeRequests)",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "httpActiveRequest",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 8,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "http_responseCodes_ok_total",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "http_responseCodes_ok_total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 15,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "(http_responseCodes_ok_total) / (http_responseCodes_badRequest_total + http_responseCodes_created_total + http_responseCodes_forbidden_total + http_responseCodes_noContent_total + http_responseCodes_notFound_total + http_responseCodes_notModified_total + http_responseCodes_ok_total + http_responseCodes_other_total + http_responseCodes_serverError_total)",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "% http_responseCodes_ok_total vs total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 12,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "http_responseCodes_serverError_total",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "http_responseCodes_serverError_total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 16,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "(http_responseCodes_serverError_total) / (http_responseCodes_badRequest_total + http_responseCodes_created_total + http_responseCodes_forbidden_total + http_responseCodes_noContent_total + http_responseCodes_notFound_total + http_responseCodes_notModified_total + http_responseCodes_ok_total + http_responseCodes_other_total + http_responseCodes_serverError_total)",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "% http_responseCodes_serverError vs total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 14,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "http_responseCodes_serviceUnavailable_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -129,9 +460,9 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 24
       },
-      "id": 12,
+      "id": 18,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -147,7 +478,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(http_responseCodes_serverError_total[5m])",
+          "expr": "(http_responseCodes_serviceUnavailable_total) / (http_responseCodes_badRequest_total + http_responseCodes_created_total + http_responseCodes_forbidden_total + http_responseCodes_noContent_total + http_responseCodes_notFound_total + http_responseCodes_notModified_total + http_responseCodes_ok_total + http_responseCodes_other_total + http_responseCodes_serverError_total)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -155,7 +486,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "http_responseCodes_serverError_total",
+      "title": "% http_responseCodes_serviceUnavailable vs total",
       "type": "gauge"
     },
     {
@@ -184,14 +515,14 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 32
       },
       "id": 10,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -202,7 +533,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(http_responseCodes_forbidden_total[5m])",
+          "expr": "http_responseCodes_forbidden_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -239,14 +570,14 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 32
       },
-      "id": 8,
+      "id": 19,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -257,7 +588,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(http_responseCodes_ok_total[5m])",
+          "expr": "(http_responseCodes_forbidden_total) / (http_responseCodes_badRequest_total + http_responseCodes_created_total + http_responseCodes_forbidden_total + http_responseCodes_noContent_total + http_responseCodes_notFound_total + http_responseCodes_notModified_total + http_responseCodes_ok_total + http_responseCodes_other_total + http_responseCodes_serverError_total)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -265,7 +596,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "http_responseCodes_ok_total",
+      "title": "% http_responseCodes_forbidden vs total",
       "type": "gauge"
     },
     {
@@ -294,14 +625,14 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 40
       },
       "id": 6,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -312,7 +643,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(http_responseCodes_badRequest_total[5m])",
+          "expr": "http_responseCodes_badRequest_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -320,7 +651,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Bad Requests",
+      "title": "http_responseCodes_badRequest_total",
       "type": "gauge"
     },
     {
@@ -349,14 +680,14 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 40
       },
-      "id": 4,
+      "id": 20,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -367,7 +698,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(http_requests_count[5m])",
+          "expr": "(http_responseCodes_badRequest_total) / (http_responseCodes_badRequest_total + http_responseCodes_created_total + http_responseCodes_forbidden_total + http_responseCodes_noContent_total + http_responseCodes_notFound_total + http_responseCodes_notModified_total + http_responseCodes_ok_total + http_responseCodes_other_total + http_responseCodes_serverError_total)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -375,63 +706,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "httpRequest-Count",
-      "type": "gauge"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "httpActiveRequest",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 24
-      },
-      "id": 2,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.5",
-      "targets": [
-        {
-          "expr": "http_activeRequests",
-          "interval": "",
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "httpActiveRequest",
+      "title": "% http_responseCodes_badRequest vs total",
       "type": "gauge"
     }
   ],
@@ -461,5 +736,5 @@
   "timezone": "",
   "title": "httpInfo",
   "uid": "2LQwt2UMz",
-  "version": 16
+  "version": 21
 }
