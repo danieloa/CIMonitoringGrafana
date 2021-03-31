@@ -307,7 +307,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -318,7 +318,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_job_scheduled_total[1h])",
+          "expr": "jenkins_job_scheduled_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -326,7 +326,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_job_scheduled_last_hour",
+      "title": "jenkins_job_scheduled_total",
       "type": "gauge"
     },
     {
@@ -485,7 +485,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_job_blocked_duration_count[1h])",
+          "expr": "(jenkins_task_waiting_duration_count) / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count + jenkins_task_waiting_duration_count)",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
@@ -494,7 +494,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_job_blocked_duration_avg_last_hour",
+      "title": "% (time) task waiting vs total ",
       "type": "gauge"
     },
     {
@@ -640,7 +640,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -651,7 +651,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_job_waiting_duration_count[1h])",
+          "expr": "(jenkins_task_queuing_duration_count) / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count + jenkins_task_waiting_duration_count)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -659,7 +659,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_job_waiting_duration_mean_last_hour",
+      "title": "% (time) task queued vs total",
       "type": "gauge"
     },
     {
@@ -685,12 +685,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 10,
         "x": 0,
         "y": 23
       },
-      "id": 20,
+      "id": 30,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -706,7 +706,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "jenkins_queue_size_value",
+          "expr": "jenkins_runs_failure_total / jenkins_runs_total_total",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -714,7 +714,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Jenkins Queue Size",
+      "title": "% failed runs vs total",
       "type": "gauge"
     },
     {
@@ -861,7 +861,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "sum"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -872,7 +872,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "rate(jenkins_job_queuing_duration_count[1h])",
+          "expr": "(jenkins_task_execution_duration_count)  / (jenkins_task_blocked_duration_count + jenkins_task_buildable_duration_count + jenkins_task_execution_duration_count + jenkins_task_queuing_duration_count + jenkins_task_waiting_duration_count)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -880,7 +880,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_job_queuing_duration_count (Mean last hour)",
+      "title": "% task execution time vs total",
       "type": "gauge"
     },
     {
@@ -915,10 +915,10 @@
         "h": 6,
         "w": 10,
         "x": 0,
-        "y": 29
+        "y": 30
       },
       "hiddenSeries": false,
-      "id": 2,
+      "id": 20,
       "legend": {
         "avg": false,
         "current": false,
@@ -945,29 +945,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "default_jenkins_uptime",
-          "format": "time_series",
-          "instant": false,
+          "expr": "jenkins_queue_size_value",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
-      "thresholds": [
-        {
-          "$$hashKey": "object:1617",
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "lt",
-          "value": 1,
-          "yaxis": "left"
-        }
-      ],
+      "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "jenkins_uptime",
+      "title": "Jenkins Queue Size",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1147,10 +1135,10 @@
         "h": 6,
         "w": 10,
         "x": 0,
-        "y": 35
+        "y": 36
       },
       "hiddenSeries": false,
-      "id": 38,
+      "id": 2,
       "legend": {
         "avg": false,
         "current": false,
@@ -1177,7 +1165,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "system_cpu_load",
+          "expr": "default_jenkins_uptime",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1199,7 +1187,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "system_cpu_load",
+      "title": "jenkins_uptime",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1235,61 +1223,6 @@
         "align": false,
         "alignLevel": null
       }
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 5,
-        "x": 10,
-        "y": 35
-      },
-      "id": 30,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.5",
-      "targets": [
-        {
-          "expr": "rate(jenkins_job_execution_time_count[1h])",
-          "interval": "",
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "jenkins_job_execution_time_last_hour (Mean)",
-      "type": "gauge"
     },
     {
       "aliasColors": {},
@@ -1434,10 +1367,10 @@
         "h": 6,
         "w": 10,
         "x": 0,
-        "y": 41
+        "y": 42
       },
       "hiddenSeries": false,
-      "id": 39,
+      "id": 38,
       "legend": {
         "avg": false,
         "current": false,
@@ -1464,18 +1397,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "process_virtual_memory_bytes{instance=\"c1.default.svc.cluster.local:80\", job=\"c1-metrics\"}",
+          "expr": "system_cpu_load",
           "format": "time_series",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
-        },
-        {
-          "expr": "process_virtual_memory_bytes{instance=\"c2.default.svc.cluster.local:80\", job=\"c2-metrics\"}",
-          "interval": "",
-          "legendFormat": "{{instance}}",
-          "refId": "B"
         }
       ],
       "thresholds": [
@@ -1492,7 +1419,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "process_virtual_memory_bytes",
+      "title": "system_cpu_load",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1641,6 +1568,10 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
@@ -1662,93 +1593,106 @@
         },
         "overrides": []
       },
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 5,
+        "w": 10,
         "x": 0,
-        "y": 47
+        "y": 48
       },
-      "id": 16,
+      "hiddenSeries": false,
+      "id": 39,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": true,
-        "showThresholdMarkers": true
+        "dataLinks": []
       },
+      "percentage": false,
       "pluginVersion": "7.0.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "(jenkins_node_online_value) / (jenkins_node_count_value)",
+          "expr": "process_virtual_memory_bytes{instance=\"c1.default.svc.cluster.local:80\", job=\"c1-metrics\"}",
+          "format": "time_series",
+          "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "% jenkins_node_online",
-      "type": "gauge"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 5,
-        "x": 5,
-        "y": 47
-      },
-      "id": 34,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.5",
-      "targets": [
         {
-          "expr": "jenkins_plugins_active / (jenkins_plugins_active + jenkins_plugins_inactive)",
+          "expr": "process_virtual_memory_bytes{instance=\"c2.default.svc.cluster.local:80\", job=\"c2-metrics\"}",
           "interval": "",
           "legendFormat": "{{instance}}",
-          "refId": "A"
+          "refId": "B"
+        }
+      ],
+      "thresholds": [
+        {
+          "$$hashKey": "object:1617",
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "lt",
+          "value": 1,
+          "yaxis": "left"
         }
       ],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "% jenkins_plugins_active vs total",
-      "type": "gauge"
+      "title": "process_virtual_memory_bytes",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "datasource": "${DS_PROMETHEUS}",
@@ -1831,9 +1775,9 @@
         "h": 6,
         "w": 5,
         "x": 0,
-        "y": 53
+        "y": 54
       },
-      "id": 4,
+      "id": 16,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -1843,13 +1787,13 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
+        "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "jenkins_health_check_score",
+          "expr": "(jenkins_node_online_value) / (jenkins_node_count_value)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -1857,7 +1801,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "jenkins_health_check_score",
+      "title": "% jenkins_node_online",
       "type": "gauge"
     },
     {
@@ -1886,9 +1830,9 @@
         "h": 6,
         "w": 5,
         "x": 5,
-        "y": 53
+        "y": 54
       },
-      "id": 35,
+      "id": 34,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -1904,7 +1848,7 @@
       "pluginVersion": "7.0.5",
       "targets": [
         {
-          "expr": "jenkins_plugins_failed / (jenkins_plugins_active + jenkins_plugins_inactive)",
+          "expr": "jenkins_plugins_active / (jenkins_plugins_active + jenkins_plugins_inactive)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -1912,7 +1856,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "% jenkins_plugins_failed vs total",
+      "title": "% jenkins_plugins_active vs total",
       "type": "gauge"
     },
     {
@@ -1988,6 +1932,116 @@
                 "value": 80
               }
             ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 60
+      },
+      "id": 4,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "jenkins_health_check_score",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "jenkins_health_check_score",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 5,
+        "y": 60
+      },
+      "id": 35,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "expr": "jenkins_plugins_failed / (jenkins_plugins_active + jenkins_plugins_inactive)",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "% jenkins_plugins_failed vs total",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
           },
           "unit": "none"
         },
@@ -1997,7 +2051,7 @@
         "h": 6,
         "w": 5,
         "x": 0,
-        "y": 59
+        "y": 66
       },
       "id": 6,
       "options": {
@@ -2052,7 +2106,7 @@
         "h": 6,
         "w": 5,
         "x": 5,
-        "y": 59
+        "y": 66
       },
       "id": 36,
       "options": {
@@ -2107,7 +2161,7 @@
         "h": 6,
         "w": 5,
         "x": 0,
-        "y": 65
+        "y": 72
       },
       "id": 18,
       "options": {
@@ -2145,12 +2199,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "CBCI SLOs",
   "uid": "0bOsbmwGk",
-  "version": 31
+  "version": 8
 }
